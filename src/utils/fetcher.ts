@@ -1,6 +1,7 @@
-import FetchError from '@/utils/FetchError';
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import FetchError from '@/utils/FetchError';
 import env from '@/env';
+import { isEmpty as lodashIsEmpty } from 'lodash'
 
 interface IFetcherArgs {
     method: string;
@@ -16,7 +17,7 @@ const fetcher = async (args: IFetcherArgs): Promise<any> => {
         'Content-Type': 'application/json'
     }
     if (auth) {
-        headers['Authorization'] = 'Bearer ' + auth;
+        headers['x-apisports-key'] = auth;
     }
     let pathUrl: string;
     if (nextApi) {
@@ -34,6 +35,10 @@ const fetcher = async (args: IFetcherArgs): Promise<any> => {
 
     if (!response.ok) {
         throw new FetchError(response.status, response.statusText, responseData ? responseData : null)
+    }
+
+    if (!lodashIsEmpty(responseData.errors)) {
+        throw new FetchError(response.status, 'ApiError', responseData ? responseData : null)
     }
 
     return responseData;

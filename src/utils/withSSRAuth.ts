@@ -21,7 +21,7 @@ export function withSSRAuth<P extends { [key: string]: any; }>(fn: TGetServerSid
         if (!token) {
             return {
                 redirect: {
-                    destination: '/auth?redirect=' + encodeURIComponent(ctx.resolvedUrl),
+                    destination: '/signin',
                     permanent: false
                 }
             }
