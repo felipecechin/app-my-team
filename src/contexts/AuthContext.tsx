@@ -36,7 +36,8 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
                 const response = await fetcher({
                     method: 'GET',
                     url: '/api/getToken',
-                    nextApi: true
+                    nextApi: true,
+                    contentType: 'application/json'
                 }) as IGetTokenResponse
 
                 setToken(response.data)
@@ -62,6 +63,7 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
                 method: 'POST',
                 data: { token },
                 nextApi: true,
+                contentType: 'application/json'
             }) as ISigninResponse
 
             setToken(response.data)
@@ -82,6 +84,7 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
             url: '/api/signout',
             method: 'GET',
             nextApi: true,
+            contentType: 'application/json'
         })
         setToken('')
         router.push('/signin')
