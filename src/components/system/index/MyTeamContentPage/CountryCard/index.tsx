@@ -22,7 +22,7 @@ function CountryCard({ country, onClick, selected = false }: ICountryCardProps):
             onClick={() => onClick(country)}
             role={'button'}
         >
-            <Image alt='svg' className={'rounded-lg'} height={100} src={country.flag} width={100} />
+            <Image alt='svg' className={'rounded-lg'} height={100} src={country.flag} style={{ width: 'auto' }} width={100} />
             <p className='text-center'>{country.name}</p>
         </div>
     )
