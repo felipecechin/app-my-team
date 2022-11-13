@@ -1,9 +1,9 @@
-import { IncomingMessage } from 'http';
-import { NextApiRequestCookies } from 'next/dist/server/api-utils';
-import { NextApiResponse } from 'next';
-import { serialize } from 'cookie';
+import { IncomingMessage } from 'http'
+import { NextApiRequestCookies } from 'next/dist/server/api-utils'
+import { NextApiResponse } from 'next'
+import { serialize } from 'cookie'
 
-const cookieName = '_app-my-team';
+const cookieName = '_app-my-team'
 
 export const getToken = (req: IncomingMessage & {
     cookies: NextApiRequestCookies
@@ -15,9 +15,9 @@ export const getToken = (req: IncomingMessage & {
 export const parseCookies = (req: IncomingMessage & {
     cookies: NextApiRequestCookies
 }): Partial<{
-    [key: string]: string;
+    [key: string]: string
 }> => {
-    return req.cookies;
+    return req.cookies
 }
 
 export const removeToken = (res: NextApiResponse): void => {
@@ -39,5 +39,5 @@ export const storeToken = (res: NextApiResponse, token: string): void => {
         // secure: true
     })
 
-    res.setHeader('Set-Cookie', cookie);
+    res.setHeader('Set-Cookie', cookie)
 }

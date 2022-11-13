@@ -1,12 +1,12 @@
 import { IoMdFootball } from 'react-icons/io'
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext'
 
 interface IHeaderProps {
     children: React.ReactNode
 }
 
 function Header({ children }: IHeaderProps): JSX.Element {
-    const { signout } = useAuth();
+    const { signout } = useAuth()
 
     return (
         <header className='w-full bg-gradient-to-r from-emerald-700 to-green-500 px-4 py-4'>
@@ -28,4 +28,4 @@ function Header({ children }: IHeaderProps): JSX.Element {
     )
 }
 
-export default Header;
+export default Header

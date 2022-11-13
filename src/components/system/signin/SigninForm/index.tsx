@@ -1,10 +1,10 @@
 import { useCallback, useRef } from 'react'
 
-import { FaSignInAlt } from 'react-icons/fa';
-import { useAuth } from '@/contexts/AuthContext';
+import { FaSignInAlt } from 'react-icons/fa'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function SigninForm(): JSX.Element {
-    const { signin } = useAuth();
+    const { signin } = useAuth()
     const inputTokenRef = useRef<HTMLInputElement>(null)
 
     const handleFormSubmit = useCallback((event: React.FormEvent<HTMLFormElement>): void => {

@@ -1,4 +1,4 @@
-import SigninForm from '@/components/system/signin/SigninForm';
+import SigninForm from '@/components/system/signin/SigninForm'
 
 export default function Signin(): JSX.Element {
     return (

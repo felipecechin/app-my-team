@@ -12,4 +12,4 @@ function MainContent({ children }: IMainContentProps): JSX.Element {
     )
 }
 
-export default MainContent;
+export default MainContent

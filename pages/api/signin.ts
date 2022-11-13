@@ -1,27 +1,27 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next'
 
-import fetcher from '@/utils/fetcher';
-import { storeToken } from '@/utils/cookies';
+import fetcher from '@/utils/fetcher'
+import { storeToken } from '@/utils/cookies'
 
 interface IFetchResponseLoginSuccess {
     response: {
         account: {
-            email: string;
+            email: string
         }
     }
 }
 
 interface IRequestBody {
-    token: string;
+    token: string
 }
 
 type TResponseJson = {
-    data: string;
+    data: string
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<TResponseJson>): Promise<void> {
     if (req.method === 'POST') {
-        const { token }: IRequestBody = req.body;
+        const { token }: IRequestBody = req.body
 
         const response = await fetcher({
             method: 'GET',
@@ -30,8 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }) as IFetchResponseLoginSuccess
 
         if (response.response.account.email) {
-            storeToken(res, token);
-            return res.json({ data: token });
+            storeToken(res, token)
+            return res.json({ data: token })
         } else {
             return res.status(500).json({ data: 'No token' })
         }

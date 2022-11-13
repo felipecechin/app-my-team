@@ -9,14 +9,14 @@ class FetchError extends Error {
         message: string,
         data: any,
     ) {
-        super(message);
+        super(message)
 
-        this.name = 'FetchError';
+        this.name = 'FetchError'
         this.data = data ?? {
             message: message
-        };
-        this.status = status;
+        }
+        this.status = status
     }
 }
 
-export default FetchError;
+export default FetchError
