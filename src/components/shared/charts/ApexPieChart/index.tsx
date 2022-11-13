@@ -39,7 +39,10 @@ function ApexPieChart({ responsiveWidth, responsiveHeight, responsiveLegendPosit
         setSeries(series)
         const options = {
             labels: [...labels],
-            responsive: [...responsiveOptions]
+            responsive: [...responsiveOptions],
+            legend: {
+                position: 'bottom'
+            }
         }
         setOptions(options)
         // eslint-disable-next-line react-hooks/exhaustive-deps
