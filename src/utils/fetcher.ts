@@ -9,12 +9,15 @@ interface IFetcherArgs {
     data?: object
     auth?: string
     nextApi?: boolean
+    queryParams?: Record<string, string>
+    contentType?: string
 }
 
 const fetcher = async (args: IFetcherArgs): Promise<any> => {
     const { method, url, data, auth, nextApi } = args
-    const headers: HeadersInit = {
-        'Content-Type': 'application/json'
+    const headers: HeadersInit = {}
+    if (args.contentType) {
+        headers['Content-Type'] = args.contentType
     }
     if (auth) {
         headers['x-apisports-key'] = auth
@@ -25,6 +28,10 @@ const fetcher = async (args: IFetcherArgs): Promise<any> => {
     } else {
         pathUrl = `${env.API}${url}`
     }
+    if (args.queryParams) {
+        pathUrl += `?${new URLSearchParams(args.queryParams).toString()}`
+    }
+
     const response = await fetch(pathUrl, {
         method,
         headers,
