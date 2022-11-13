@@ -1,8 +1,9 @@
-import { FaRegWindowClose, FaSearch } from 'react-icons/fa'
 import { RefObject, useCallback, useRef, useState } from 'react'
 import { mergeWith as lodashMergeWith, orderBy as lodashOrderBy } from 'lodash'
 
+import ButtonRemove from './ButtonRemove'
 import CountryCard from './CountryCard'
+import { FaSearch } from 'react-icons/fa'
 import { ICountry } from '@/types/country'
 import { ILeague } from '@/types/league'
 import { IPlayer } from '@/types/player'
@@ -342,13 +343,8 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                         />
                     </div>
                     {selectedFiltersAndResults.country && (
-                        <button
-                            className={
-                                classNames(
-                                    'flex flex-row mt-2 sm:mt-0 sm:ml-2 text-emerald-800 font-bold items-center px-4 py-2 border border-emerald-800 shadow-lg shadow-emerald-200 bg-green-50 rounded-lg',
-                                    'hover:shadow-emerald-300 hover:bg-green-100 hover:cursor-pointer'
-                                )
-                            }
+                        <ButtonRemove
+                            label={selectedFiltersAndResults.country.name}
                             onClick={() => setSelectedFiltersAndResults({
                                 country: null,
                                 league: null,
@@ -356,10 +352,7 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                                 team: null,
                                 teamStatistics: null
                             })}
-                        >
-                            {selectedFiltersAndResults.country.name}
-                            <FaRegWindowClose className='ml-2' />
-                        </button>
+                        />
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
@@ -367,7 +360,7 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                         {filteredCountries.map((country) => (
                             <CountryCard
                                 country={country}
-                                key={country.code}
+                                key={country.name}
                                 onClick={handleSelectCountry}
                                 selected={selectedFiltersAndResults.country?.code === country.code}
                             />
@@ -400,13 +393,8 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                         />
                     </div>
                     {selectedFiltersAndResults.season && (
-                        <button
-                            className={
-                                classNames(
-                                    'flex flex-row mt-2 sm:mt-0 sm:ml-2 text-emerald-800 font-bold items-center px-4 py-2 border border-emerald-800 shadow-lg shadow-emerald-200 bg-green-50 rounded-lg',
-                                    'hover:shadow-emerald-300 hover:bg-green-100 hover:cursor-pointer'
-                                )
-                            }
+                        <ButtonRemove
+                            label={selectedFiltersAndResults.season}
                             onClick={() => setSelectedFiltersAndResults((prev) => {
                                 return {
                                     ...prev,
@@ -416,10 +404,7 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                                     teamStatistics: null
                                 }
                             })}
-                        >
-                            {selectedFiltersAndResults.season}
-                            <FaRegWindowClose className='ml-2' />
-                        </button>
+                        />
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
@@ -460,13 +445,8 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                         />
                     </div>
                     {selectedFiltersAndResults.league && (
-                        <button
-                            className={
-                                classNames(
-                                    'flex flex-row mt-2 sm:mt-0 sm:ml-2 text-emerald-800 font-bold items-center px-4 py-2 border border-emerald-800 shadow-lg shadow-emerald-200 bg-green-50 rounded-lg',
-                                    'hover:shadow-emerald-300 hover:bg-green-100 hover:cursor-pointer'
-                                )
-                            }
+                        <ButtonRemove
+                            label={selectedFiltersAndResults.league.name}
                             onClick={() => setSelectedFiltersAndResults((prev) => {
                                 return {
                                     ...prev,
@@ -475,13 +455,15 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                                     teamStatistics: null
                                 }
                             })}
-                        >
-                            {selectedFiltersAndResults.league.name}
-                            <FaRegWindowClose className='ml-2' />
-                        </button>
+                        />
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
+                    {filteredLeagues.length === 0 && (
+                        <p className='italic'>
+                            Nenhuma liga encontrada.
+                        </p>
+                    )}
                     <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3'>
                         {filteredLeagues.map((league) => (
                             <LeagueCard
@@ -519,25 +501,22 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                         />
                     </div>
                     {selectedFiltersAndResults.team && (
-                        <button
-                            className={
-                                classNames(
-                                    'flex flex-row mt-2 sm:mt-0 sm:ml-2 text-emerald-800 font-bold items-center px-4 py-2 border border-emerald-800 shadow-lg shadow-emerald-200 bg-green-50 rounded-lg',
-                                    'hover:shadow-emerald-300 hover:bg-green-100 hover:cursor-pointer'
-                                )
-                            }
+                        <ButtonRemove
+                            label={selectedFiltersAndResults.team.name}
                             onClick={() => setSelectedFiltersAndResults((prev) => ({
                                 ...prev,
                                 team: null,
                                 teamStatistics: null
                             }))}
-                        >
-                            {selectedFiltersAndResults.team.name}
-                            <FaRegWindowClose className='ml-2' />
-                        </button>
+                        />
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
+                    {filteredLeagues.length === 0 && (
+                        <p className='italic'>
+                            Nenhum time encontrado.
+                        </p>
+                    )}
                     <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3'>
                         {filteredTeams.map((team) => (
                             <TeamCard
