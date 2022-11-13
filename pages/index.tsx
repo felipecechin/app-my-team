@@ -1,12 +1,18 @@
-import { FaChartBar } from 'react-icons/fa';
-import Footer from '@/components/shared/template/Footer';
-import { GetServerSideProps } from 'next';
-import Header from '@/components/shared/template/Header';
-import MainContent from '@/components/shared/template/MainContent';
-import MyTeamContentPage from '@/components/system/index/MyTeamContentPage';
-import { withSSRAuth } from '@/utils/withSSRAuth';
+import { FaChartBar } from 'react-icons/fa'
+import Footer from '@/components/shared/template/Footer'
+import { GetServerSideProps } from 'next'
+import Header from '@/components/shared/template/Header'
+import { ICountry } from '@/types/country'
+import MainContent from '@/components/shared/template/MainContent'
+import MyTeamContentPage from '@/components/system/index/MyTeamContentPage'
+import { withSSRAuth } from '@/utils/withSSRAuth'
 
-export default function MyTeam(): JSX.Element {
+interface IMyTeamProps {
+    countries: ICountry[]
+    seasons: number[]
+}
+
+export default function MyTeam({ countries, seasons }: IMyTeamProps): JSX.Element {
     return (
         <>
             <Header>
@@ -14,7 +20,10 @@ export default function MyTeam(): JSX.Element {
                 Estatísticas
             </Header>
             <MainContent>
-                <MyTeamContentPage />
+                <MyTeamContentPage
+                    countries={countries}
+                    seasons={seasons}
+                />
             </MainContent>
             <Footer />
         </>
@@ -185,4 +194,4 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async ({ token
             seasons
         }
     }
-});
+})
