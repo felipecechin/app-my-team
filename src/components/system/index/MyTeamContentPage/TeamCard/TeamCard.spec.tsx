@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { fireEvent, render, screen } from '@testing-library/react'
 
 import TeamCard from '.'

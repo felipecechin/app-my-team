@@ -275,10 +275,9 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                     auth: token
                 })
             ])
-
             const players = playersResponse.response.map(item => item.player)
             const resultsTable = teamStatisticsResponse.response.fixtures
-            const mostUsedFormation = lodashOrderBy(teamStatisticsResponse.response.lineups, ['played'], ['desc'])[0].formation
+            const mostUsedFormation = lodashOrderBy(teamStatisticsResponse.response.lineups, ['played'], ['desc'])[0]?.formation ?? 'Sem informação'
             const goalsForMinutes = teamStatisticsResponse.response.goals.for.minute
             const goalsAgainstMinutes = teamStatisticsResponse.response.goals.against.minute
             const goalsAggregated = lodashMergeWith(goalsForMinutes, goalsAgainstMinutes, (objValue, srcValue, key) => {
@@ -356,7 +355,10 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
-                    <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3'>
+                    <div
+                        className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3'
+                        data-testid='testlistcountries'
+                    >
                         {filteredCountries.map((country) => (
                             <CountryCard
                                 country={country}
@@ -408,7 +410,10 @@ export default function MyTeamContentPage({ countries, seasons }: IMyTeamContent
                     )}
                 </div>
                 <div className='overflow-y-auto max-h-72 mt-4'>
-                    <div className='grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3'>
+                    <div
+                        className='grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3'
+                        data-testid='testlistseasons'
+                    >
                         {filteredSeasons.map((season) => (
                             <SeasonCard
                                 key={season}

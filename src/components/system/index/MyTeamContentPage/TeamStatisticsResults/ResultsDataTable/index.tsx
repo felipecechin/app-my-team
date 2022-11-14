@@ -7,7 +7,10 @@ interface IResultsDataTableProps {
 function ResultsDataTable({ data }: IResultsDataTableProps): JSX.Element {
     return (
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left text-gray-500 font-bold">
+            <table
+                className="w-full text-sm text-left text-gray-500 font-bold"
+                data-testid='testresultsdatatable'
+            >
                 <thead className="text-xs text-emerald-700 uppercase bg-gray-50">
                     <tr>
                         <th className="py-3 px-2 sm:px-4 md:px-6" scope="col"></th>

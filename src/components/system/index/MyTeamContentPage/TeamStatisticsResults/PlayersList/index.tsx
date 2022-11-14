@@ -6,7 +6,10 @@ interface IPlayersListProps {
 
 function PlayersList({ players }: IPlayersListProps): JSX.Element {
     return (
-        <ul className='w-full max-h-60 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <ul
+            className='w-full max-h-60 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4'
+            data-testid='testplayerslist'
+        >
             {players.map((player) => (
                 <li
                     className='flex flex-col'
