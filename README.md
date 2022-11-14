@@ -1,21 +1,20 @@
-## Repositório modelo
-Este repositório serve como template para criação de aplicações front-end utilizando as seguintes tecnologias:
+## Aplicação Meu Time
+Aplicação front-end criada para visualizar estatísticas de um time consumindo dados da [API Football](https://www.api-football.com/documentation-v3).
+
+### Tecnologias utilizadas
+Para a construção da aplicação, foram utilizadas as seguintes tecnologias:
 - Next.js;
 - React;
-- Tailwind CSS.
+- Typescript.
 
-O repositório já inclui:
-- ESLint e algumas regras;
-- SASS integrado;
-- Estrutura de pastas para criação de componentes;
-- Pasta `types` para criação de tipagens comuns a serem utilizadas na aplicação;
-- Funções/utilidades na pasta `utils`:
-  - `classNames` (utilizada no Tailwind);
-  - `fetcher` (para chamadas à API);
-  - classe `FetchError` (para causar `exception` ao ocorrer erro no `fetcher`);
-  - funções para manipulação de cookies (`cookies.ts`);
-  - Wrapper `withSSRAuth` para verificar se usuário está autenticado para exibir página `Server Side`.
-- Arquivo `env.ts` dentro da pasta `src`;
-- Arquivo `tsconfig.ts` com caminhos relativos (propriedade `paths`).
+Para estilização, foi utilizado Tailwind CSS.
 
-Faça bons códigos :)
+### Execução
+
+Depois de clonar o repositório e com o Node v16+, NPM e Yarn corretamente instalados, faça os seguintes passos:
+
+1. Criar `.env` de acordo com o arquivo `.env.example` e definir a URL da API;
+    - No meu caso, foi utilizada a URL https://v3.football.api-sports.io.
+2. Executar comando `yarn` para instalar dependências;
+3. Executar comando `yarn dev` par executar aplicação.
+    - É preciso ter uma chave de acesso para o consumo de dados da API.
