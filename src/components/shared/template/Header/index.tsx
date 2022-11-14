@@ -16,7 +16,11 @@ function Header({ children }: IHeaderProps): JSX.Element {
                         <IoMdFootball className='h-6 w-6 mr-1 self-center flex-shrink-0' />
                         Meu time
                     </span>
-                    <button className='link link-hover text-emerald-700 hover:text-emerald-900' onClick={signout}>
+                    <button
+                        className='link link-hover text-emerald-700 hover:text-emerald-900'
+                        data-testid='testsignout'
+                        onClick={signout}
+                    >
                         Sair
                     </button>
                 </div>

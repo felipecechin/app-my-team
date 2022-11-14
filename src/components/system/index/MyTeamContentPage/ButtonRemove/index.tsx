@@ -15,6 +15,7 @@ function ButtonRemove({ onClick, label }: IButtonRemoveProps): JSX.Element {
                     'hover:shadow-emerald-300 hover:bg-green-100 hover:cursor-pointer'
                 )
             }
+            data-testid='testbuttonremove'
             onClick={onClick}
         >
             {label}

@@ -19,6 +19,7 @@ function CountryCard({ country, onClick, selected = false }: ICountryCardProps):
                     'font-bold text-sm md:text-base'
                 )
             }
+            data-testid='testcountrycard'
             onClick={() => onClick(country)}
             role={'button'}
         >

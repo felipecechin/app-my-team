@@ -17,6 +17,7 @@ function SeasonCard({ season, selected = false, onClick }: ISeasonCardProps): JS
                     'font-bold text-sm md:text-base'
                 )
             }
+            data-testid='testseasoncard'
             onClick={() => onClick(season)}
             role={'button'}
         >

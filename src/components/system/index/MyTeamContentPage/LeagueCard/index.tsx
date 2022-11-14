@@ -19,6 +19,7 @@ function LeagueCard({ league, onClick, selected = false }: ILeagueCardProps): JS
                     'font-bold text-sm md:text-base'
                 )
             }
+            data-testid='testleaguecard'
             onClick={() => onClick(league)}
             role={'button'}
         >

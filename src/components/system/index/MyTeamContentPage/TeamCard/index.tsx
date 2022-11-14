@@ -19,6 +19,7 @@ function TeamCard({ team, onClick, selected = false }: ITeamCardProps): JSX.Elem
                     'font-bold text-sm md:text-base'
                 )
             }
+            data-testid='testteamcard'
             onClick={() => onClick(team)}
             role={'button'}
         >
