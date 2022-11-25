@@ -13,12 +13,10 @@ describe('SigninForm component', () => {
         const signinMocked = jest.fn()
 
         useAuthMocked.mockReturnValueOnce({
-            signin: signinMocked
+            signin: signinMocked,
         } as any)
 
-        render(
-            <SigninForm />
-        )
+        render(<SigninForm />)
 
         const input = screen.getByTestId('testinputtoken')
         fireEvent.change(input, { target: { value: 'key' } })
@@ -31,12 +29,10 @@ describe('SigninForm component', () => {
         const signinMocked = jest.fn()
 
         useAuthMocked.mockReturnValueOnce({
-            signin: signinMocked
+            signin: signinMocked,
         } as any)
 
-        render(
-            <SigninForm />
-        )
+        render(<SigninForm />)
 
         const input = screen.getByTestId('testinputtoken')
         fireEvent.change(input, { target: { value: '' } })

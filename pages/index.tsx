@@ -21,7 +21,10 @@ interface IFetchResponseSeasons {
     response: number[]
 }
 
-export default function MyTeam({ countries, seasons }: IMyTeamProps): JSX.Element {
+export default function MyTeam({
+    countries,
+    seasons,
+}: IMyTeamProps): JSX.Element {
     return (
         <>
             <Header>
@@ -39,26 +42,33 @@ export default function MyTeam({ countries, seasons }: IMyTeamProps): JSX.Elemen
     )
 }
 
-export const getServerSideProps: GetServerSideProps = withSSRAuth(async ({ token }) => {
-    const [responseCountries, responseSeasons]: [IFetchResponseCountries, IFetchResponseSeasons] = await Promise.all([
-        fetcher({
-            url: '/countries',
-            method: 'GET',
-            auth: token
-        }),
-        fetcher({
-            url: '/leagues/seasons',
-            method: 'GET',
-            auth: token
-        })
-    ])
+export const getServerSideProps: GetServerSideProps = withSSRAuth(
+    async ({ token }) => {
+        const [responseCountries, responseSeasons]: [
+            IFetchResponseCountries,
+            IFetchResponseSeasons
+        ] = await Promise.all([
+            fetcher({
+                url: '/countries',
+                method: 'GET',
+                auth: token,
+            }),
+            fetcher({
+                url: '/leagues/seasons',
+                method: 'GET',
+                auth: token,
+            }),
+        ])
 
-    const countries = responseCountries.response.filter(country => country.name !== 'World')
+        const countries = responseCountries.response.filter(
+            (country) => country.name !== 'World'
+        )
 
-    return {
-        props: {
-            countries,
-            seasons: responseSeasons.response
+        return {
+            props: {
+                countries,
+                seasons: responseSeasons.response,
+            },
         }
     }
-})
+)

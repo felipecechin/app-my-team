@@ -19,15 +19,18 @@ type TResponseJson = {
     data: string
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<TResponseJson>): Promise<void> {
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<TResponseJson>
+): Promise<void> {
     if (req.method === 'POST') {
         const { token }: IRequestBody = req.body
 
-        const response = await fetcher({
+        const response = (await fetcher({
             method: 'GET',
             url: '/status',
             auth: token,
-        }) as IFetchResponseLoginSuccess
+        })) as IFetchResponseLoginSuccess
 
         if (response.response.account.email) {
             storeToken(res, token)

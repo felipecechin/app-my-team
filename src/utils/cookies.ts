@@ -5,16 +5,20 @@ import { serialize } from 'cookie'
 
 const cookieName = '_app-my-team'
 
-export const getToken = (req: IncomingMessage & {
-    cookies: NextApiRequestCookies
-}): string | undefined => {
+export const getToken = (
+    req: IncomingMessage & {
+        cookies: NextApiRequestCookies
+    }
+): string | undefined => {
     const cookies = parseCookies(req)
     return cookies[cookieName]
 }
 
-export const parseCookies = (req: IncomingMessage & {
-    cookies: NextApiRequestCookies
-}): Partial<{
+export const parseCookies = (
+    req: IncomingMessage & {
+        cookies: NextApiRequestCookies
+    }
+): Partial<{
     [key: string]: string
 }> => {
     return req.cookies
@@ -31,7 +35,7 @@ export const removeToken = (res: NextApiResponse): void => {
 
 export const storeToken = (res: NextApiResponse, token: string): void => {
     const cookie = serialize(cookieName, token, {
-        expires: new Date(Date.now() + (60 * 60 * 4) * 1000),
+        expires: new Date(Date.now() + 60 * 60 * 4 * 1000),
         httpOnly: true,
         maxAge: 60 * 60 * 4,
         path: '/',

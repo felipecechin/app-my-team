@@ -7,7 +7,7 @@ const teamMock = {
     id: 31,
     name: 'team test',
     logo: 'https://restcountries.eu/data/bra.svg',
-    code: 'team'
+    code: 'team',
 }
 const cardTestId = 'testteamcard'
 

@@ -14,7 +14,16 @@ interface IApexPieChartProps {
     height?: string
 }
 
-function ApexPieChart({ responsiveWidth, responsiveHeight, responsiveLegendPosition, seriesKey, labelsKey, data, height, width }: IApexPieChartProps): JSX.Element {
+function ApexPieChart({
+    responsiveWidth,
+    responsiveHeight,
+    responsiveLegendPosition,
+    seriesKey,
+    labelsKey,
+    data,
+    height,
+    width,
+}: IApexPieChartProps): JSX.Element {
     const [series, setSeries] = useState<ApexAxisChartSeries>([])
     const [options, setOptions] = useState({})
 
@@ -27,13 +36,23 @@ function ApexPieChart({ responsiveWidth, responsiveHeight, responsiveLegendPosit
                 breakpoint: item,
                 options: {
                     chart: {
-                        width: responsiveWidth && responsiveWidth[index] ? responsiveWidth[index] : 'auto',
-                        height: responsiveHeight && responsiveHeight[index] ? responsiveHeight[index] : 'auto'
+                        width:
+                            responsiveWidth && responsiveWidth[index]
+                                ? responsiveWidth[index]
+                                : 'auto',
+                        height:
+                            responsiveHeight && responsiveHeight[index]
+                                ? responsiveHeight[index]
+                                : 'auto',
                     },
                     legend: {
-                        position: responsiveLegendPosition && responsiveLegendPosition[index] ? responsiveLegendPosition[index] : 'bottom'
-                    }
-                }
+                        position:
+                            responsiveLegendPosition &&
+                            responsiveLegendPosition[index]
+                                ? responsiveLegendPosition[index]
+                                : 'bottom',
+                    },
+                },
             }
         })
         setSeries(series)
@@ -41,8 +60,8 @@ function ApexPieChart({ responsiveWidth, responsiveHeight, responsiveLegendPosit
             labels: [...labels],
             responsive: [...responsiveOptions],
             legend: {
-                position: 'bottom'
-            }
+                position: 'bottom',
+            },
         }
         setOptions(options)
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +72,7 @@ function ApexPieChart({ responsiveWidth, responsiveHeight, responsiveLegendPosit
             height={height || 'auto'}
             options={options}
             series={series}
-            type="pie"
+            type='pie'
             width={width || '100%'}
         />
     )
