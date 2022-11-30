@@ -22,5 +22,3 @@ export default function Signin(): JSX.Element {
         </main>
     )
 }
-
-

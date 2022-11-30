@@ -11,14 +11,10 @@ describe('Header component', () => {
         const useAuthMocked = jest.mocked(useAuth)
 
         useAuthMocked.mockReturnValueOnce({
-            signout: jest.fn()
+            signout: jest.fn(),
         } as any)
 
-        render(
-            <Header>
-                My header test
-            </Header>
-        )
+        render(<Header>My header test</Header>)
 
         expect(screen.getByText('My header test')).toBeInTheDocument()
         expect(screen.getByText('Meu time')).toBeInTheDocument()
@@ -29,14 +25,10 @@ describe('Header component', () => {
         const signoutMocked = jest.fn()
 
         useAuthMocked.mockReturnValueOnce({
-            signout: signoutMocked
+            signout: signoutMocked,
         } as any)
 
-        render(
-            <Header>
-                My header test
-            </Header>
-        )
+        render(<Header>My header test</Header>)
 
         const buttonSignout = screen.getByTestId('testsignout')
         fireEvent.click(buttonSignout)

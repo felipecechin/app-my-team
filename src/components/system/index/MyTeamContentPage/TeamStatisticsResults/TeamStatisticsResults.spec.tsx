@@ -16,41 +16,41 @@ const teamStatisticsMock = {
             name: 'player test 2',
             age: 21,
             nationality: 'England',
-        }
+        },
     ],
     mostUsedFormation: '4-4-2',
     resultsTable: {
         played: {
             home: 1,
             away: 1,
-            total: 2
+            total: 2,
         },
         wins: {
             home: 1,
             away: 1,
-            total: 2
+            total: 2,
         },
         draws: {
             home: 1,
             away: 1,
-            total: 2
+            total: 2,
         },
         loses: {
             home: 1,
             away: 1,
-            total: 2
-        }
+            total: 2,
+        },
     },
     goalsPerGameTime: [
         {
             minute: '0-15',
-            goals: 21
+            goals: 21,
         },
         {
             minute: '16-30',
-            goals: 30
-        }
-    ]
+            goals: 30,
+        },
+    ],
 }
 
 jest.mock('react-apexcharts', () =>
@@ -64,24 +64,25 @@ jest.mock('apexcharts', () => ({
         return new Promise((resolve, reject) => {
             resolve('uri')
         })
-    })
+    }),
 }))
-
 
 describe('TeamStatisticsResults component', () => {
     it('should render correctly', async () => {
         const ref = React.createRef<HTMLDivElement>()
-        await (act(async () => {
+        await act(async () => {
             render(
                 <TeamStatisticsResults
                     divResultsRef={ref}
                     teamStatistics={teamStatisticsMock}
                 />
             )
-        }))
+        })
         expect(screen.getByText('Tabela de resultados')).toBeInTheDocument()
         expect(screen.getByText('Lista de jogadores')).toBeInTheDocument()
         expect(screen.getByText('Formação mais utilizada')).toBeInTheDocument()
-        expect(screen.getByText('Quantidade de gols por tempo de jogo')).toBeInTheDocument()
+        expect(
+            screen.getByText('Quantidade de gols por tempo de jogo')
+        ).toBeInTheDocument()
     })
 })

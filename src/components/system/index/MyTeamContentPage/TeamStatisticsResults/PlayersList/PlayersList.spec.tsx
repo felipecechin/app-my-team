@@ -14,16 +14,12 @@ const playersMock = [
         name: 'player test 2',
         age: 21,
         nationality: 'England',
-    }
+    },
 ]
 
 describe('PlayersList component', () => {
     it('should render correctly', () => {
-        render(
-            <PlayersList
-                players={playersMock}
-            />
-        )
+        render(<PlayersList players={playersMock} />)
 
         expect(screen.getByTestId('testplayerslist')).toBeInTheDocument()
         expect(screen.getByTestId('testplayerslist').children).toHaveLength(2)

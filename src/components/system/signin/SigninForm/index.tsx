@@ -7,12 +7,15 @@ export default function SigninForm(): JSX.Element {
     const { signin } = useAuth()
     const inputTokenRef = useRef<HTMLInputElement>(null)
 
-    const handleFormSubmit = useCallback((event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault()
-        if (inputTokenRef.current && inputTokenRef.current.value) {
-            signin(inputTokenRef.current.value)
-        }
-    }, [signin])
+    const handleFormSubmit = useCallback(
+        (event: React.FormEvent<HTMLFormElement>): void => {
+            event.preventDefault()
+            if (inputTokenRef.current && inputTokenRef.current.value) {
+                signin(inputTokenRef.current.value)
+            }
+        },
+        [signin]
+    )
 
     return (
         <form onSubmit={handleFormSubmit}>

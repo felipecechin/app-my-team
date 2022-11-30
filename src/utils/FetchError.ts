@@ -4,16 +4,12 @@ class FetchError extends Error {
     name: string
     status: number
 
-    constructor(
-        status: number,
-        message: string,
-        data: any,
-    ) {
+    constructor(status: number, message: string, data: any) {
         super(message)
 
         this.name = 'FetchError'
         this.data = data ?? {
-            message: message
+            message: message,
         }
         this.status = status
     }

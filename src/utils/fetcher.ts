@@ -35,17 +35,25 @@ const fetcher = async (args: IFetcherArgs): Promise<any> => {
     const response = await fetch(pathUrl, {
         method,
         headers,
-        body: data ? JSON.stringify(data) : undefined
+        body: data ? JSON.stringify(data) : undefined,
     })
 
     const responseData = await response.json()
 
     if (!response.ok) {
-        throw new FetchError(response.status, response.statusText, responseData ? responseData : null)
+        throw new FetchError(
+            response.status,
+            response.statusText,
+            responseData ? responseData : null
+        )
     }
 
     if (!lodashIsEmpty(responseData.errors)) {
-        throw new FetchError(response.status, 'ApiError', responseData ? responseData : null)
+        throw new FetchError(
+            response.status,
+            'ApiError',
+            responseData ? responseData : null
+        )
     }
 
     return responseData

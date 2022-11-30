@@ -4,9 +4,9 @@ import Footer from '.'
 
 describe('Footer component', () => {
     it('should render correctly', () => {
-        render(
-            <Footer />
+        render(<Footer />)
+        expect(screen.getByTestId('testcopyright')).toHaveTextContent(
+            'Copyright © 2022 - All right reserved'
         )
-        expect(screen.getByTestId('testcopyright')).toHaveTextContent('Copyright © 2022 - All right reserved')
     })
 })

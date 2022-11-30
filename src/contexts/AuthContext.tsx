@@ -33,12 +33,12 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
     useEffect(() => {
         const getToken = async (): Promise<void> => {
             try {
-                const response = await fetcher({
+                const response = (await fetcher({
                     method: 'GET',
                     url: '/api/getToken',
                     nextApi: true,
-                    contentType: 'application/json'
-                }) as IGetTokenResponse
+                    contentType: 'application/json',
+                })) as IGetTokenResponse
 
                 setToken(response.data)
             } catch (error) {
@@ -58,13 +58,13 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
         })
         reactSwal.showLoading(null)
         try {
-            const response = await fetcher({
+            const response = (await fetcher({
                 url: '/api/signin',
                 method: 'POST',
                 data: { token },
                 nextApi: true,
-                contentType: 'application/json'
-            }) as ISigninResponse
+                contentType: 'application/json',
+            })) as ISigninResponse
 
             setToken(response.data)
             reactSwal.close()
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
             url: '/api/signout',
             method: 'GET',
             nextApi: true,
-            contentType: 'application/json'
+            contentType: 'application/json',
         })
         setToken('')
         router.push('/signin')
