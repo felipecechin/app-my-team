@@ -1,4 +1,5 @@
 import { RefObject, useCallback, useRef, useState } from 'react'
+import { closeSwal, showSwalError, showSwalLoading } from '@/utils/reactSwal'
 import { mergeWith as lodashMergeWith, orderBy as lodashOrderBy } from 'lodash'
 
 import ButtonRemove from './ButtonRemove'
@@ -16,8 +17,6 @@ import TeamCard from './TeamCard'
 import TeamStatisticsResults from './TeamStatisticsResults'
 import classNames from '@/utils/classNames'
 import fetcher from '@/utils/fetcher'
-import { reactSwal } from '@/utils/reactSwal'
-import { sweetAlertOptions } from '@/utils/sweetAlertOptions'
 import { useAuth } from '@/contexts/AuthContext'
 
 interface IMyTeamContentPageProps {
@@ -175,12 +174,7 @@ export default function MyTeamContentPage({
                 setFilteredSeasons(seasons)
             }
 
-            reactSwal.fire({
-                title: 'Por favor, aguarde...',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-            reactSwal.showLoading(null)
+            showSwalLoading()
             try {
                 const response = (await fetcher({
                     url: '/leagues',
@@ -196,14 +190,9 @@ export default function MyTeamContentPage({
                     (item) => item.league
                 )
                 setFilteredLeagues(loadedLeagues.current)
-                reactSwal.close()
+                closeSwal()
             } catch (err) {
-                reactSwal.fire({
-                    title: 'Oops!',
-                    icon: 'error',
-                    text: 'Ocorreu algum erro ao buscar as ligas',
-                    confirmButtonColor: sweetAlertOptions.confirmButtonColor,
-                })
+                showSwalError('Ocorreu algum erro ao buscar as ligas')
             }
         },
         [executeScrollTo, seasons, selectedFiltersAndResults, token]
@@ -239,12 +228,7 @@ export default function MyTeamContentPage({
                 setFilteredLeagues(loadedLeagues.current)
             }
 
-            reactSwal.fire({
-                title: 'Por favor, aguarde...',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-            reactSwal.showLoading(null)
+            showSwalLoading()
             try {
                 const response = (await fetcher({
                     url: '/teams',
@@ -260,14 +244,9 @@ export default function MyTeamContentPage({
 
                 loadedTeams.current = response.response.map((item) => item.team)
                 setFilteredTeams(loadedTeams.current)
-                reactSwal.close()
+                closeSwal()
             } catch (err) {
-                reactSwal.fire({
-                    title: 'Oops!',
-                    icon: 'error',
-                    text: 'Ocorreu algum erro ao buscar os times',
-                    confirmButtonColor: sweetAlertOptions.confirmButtonColor,
-                })
+                showSwalError('Ocorreu algum erro ao buscar os times')
             }
         },
         [executeScrollTo, selectedFiltersAndResults, token]
@@ -294,12 +273,7 @@ export default function MyTeamContentPage({
                 setFilteredTeams(loadedTeams.current)
             }
 
-            reactSwal.fire({
-                title: 'Por favor, aguarde...',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-            })
-            reactSwal.showLoading(null)
+            showSwalLoading()
             const queryParams = {
                 league: String(selectedFiltersAndResults.league?.id as number),
                 season: String(selectedFiltersAndResults.season),
@@ -369,14 +343,11 @@ export default function MyTeamContentPage({
                         },
                     }
                 })
-                reactSwal.close()
+                closeSwal()
             } catch (err) {
-                reactSwal.fire({
-                    title: 'Oops!',
-                    icon: 'error',
-                    text: 'Ocorreu algum erro ao buscar as estatísticas do time',
-                    confirmButtonColor: sweetAlertOptions.confirmButtonColor,
-                })
+                showSwalError(
+                    'Ocorreu algum erro ao buscar as estatísticas do time'
+                )
             }
         },
         [executeScrollTo, selectedFiltersAndResults, token]
